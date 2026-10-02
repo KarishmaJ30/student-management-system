@@ -1,52 +1,215 @@
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Add Student</title>
+{% block title %}
+Add Student - Student Management System
+{% endblock %}
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
-</head>
+{% block page_title %}
+Add Student
+{% endblock %}
 
-<body>
+{% block page_subtitle %}
+Register a new student in the system
+{% endblock %}
 
-    <h1>Add New Student</h1>
+{% block content %}
 
-    <form method="POST">
+<div class="form-page">
 
-        <label>Name:</label>
-        <input type="text" name="name" required>
+    <div class="form-card">
 
-        <br><br>
+        <div class="form-card-header">
 
-        <label>Email:</label>
-        <input type="email" name="email" required>
+            <div>
+                <h2>Student Information</h2>
+                <p>Enter the student's details below</p>
+            </div>
 
-        <br><br>
+            <div class="form-header-icon">
+                👨‍🎓
+            </div>
 
-        <label>Phone:</label>
-        <input type="text" name="phone">
+        </div>
 
-        <br><br>
 
-        <label>Course:</label>
-        <input type="text" name="course">
+        <form method="POST">
 
-        <br><br>
+            <!-- Personal Information -->
 
-        <label>Year:</label>
-        <input type="number" name="year">
+            <div class="form-section">
 
-        <br><br>
+                <h3>Personal Information</h3>
 
-        <label>Address:</label>
-        <input type="text" name="address">
+                <div class="form-grid">
 
-        <br><br>
+                    <div class="form-group">
 
-        <button type="submit">Add Student</button>
+                        <label for="name">
+                            Full Name
+                        </label>
 
-    </form>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter student's full name"
+                            required
+                        >
 
-</body>
-</html>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="student@example.com"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter phone number"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Academic Information -->
+
+            <div class="form-section">
+
+                <h3>Academic Information</h3>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="course">
+                            Course
+                        </label>
+
+                        <input
+                            type="text"
+                            id="course"
+                            name="course"
+                            placeholder="e.g. Computer Science"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="year">
+                            Academic Year
+                        </label>
+
+                        <select
+                            id="year"
+                            name="year"
+                            required
+                        >
+
+                            <option value="">
+                                Select academic year
+                            </option>
+
+                            <option value="1">
+                                First Year
+                            </option>
+
+                            <option value="2">
+                                Second Year
+                            </option>
+
+                            <option value="3">
+                                Third Year
+                            </option>
+
+                            <option value="4">
+                                Fourth Year
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Address -->
+
+            <div class="form-section">
+
+                <h3>Address</h3>
+
+                <div class="form-group">
+
+                    <label for="address">
+                        Student Address
+                    </label>
+
+                    <textarea
+                        id="address"
+                        name="address"
+                        rows="4"
+                        placeholder="Enter student's address"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- Form Actions -->
+
+            <div class="form-actions">
+
+                <a
+                    href="/students"
+                    class="cancel-button"
+                >
+                    Cancel
+                </a>
+
+                <button
+                    type="submit"
+                    class="save-button"
+                >
+                    Add Student
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
