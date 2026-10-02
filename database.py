@@ -53,4 +53,61 @@ def get_students():
     return students
 
 
+
+def get_student(student_id):
+
+    connection = sqlite3.connect("students.db")
+
+    cursor = connection.cursor()
+
+    cursor.execute(
+        "SELECT * FROM students WHERE id = ?",
+        (student_id,)
+    )
+
+    student = cursor.fetchone()
+
+    connection.close()
+
+    return student
+
+
+def update_student(student_id, name, email, phone, course, year, address):
+
+    connection = sqlite3.connect("students.db")
+
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        UPDATE students
+        SET name = ?,
+            email = ?,
+            phone = ?,
+            course = ?,
+            year = ?,
+            address = ?
+        WHERE id = ?
+    """, (name, email, phone, course, year, address, student_id))
+
+    connection.commit()
+
+    connection.close()
+    
+
+def delete_student(student_id):
+
+    connection = sqlite3.connect("students.db")
+
+    cursor = connection.cursor()
+
+    cursor.execute(
+        "DELETE FROM students WHERE id = ?",
+        (student_id,)
+    )
+
+    connection.commit()
+
+    connection.close()
+
+
 create_database()

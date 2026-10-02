@@ -23,6 +23,7 @@
             <th>Course</th>
             <th>Year</th>
             <th>Address</th>
+            <th>Action</th>
         </tr>
 
         {% for student in students %}
@@ -35,6 +36,17 @@
             <td>{{ student[4] }}</td>
             <td>{{ student[5] }}</td>
             <td>{{ student[6] }}</td>
+
+            <td>
+                <a href="/edit-student/{{ student[0] }}">
+                    <button>Edit</button>
+                </a>
+
+                 <a href="/delete-student/{{ student[0] }}">
+                    <button>Delete</button>
+                </a>
+            </td>
+
         </tr>
 
         {% endfor %}
