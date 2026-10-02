@@ -1,31 +1,146 @@
 ```html
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <title>Student Management System</title>
+{% block title %}
+Dashboard - Student Management System
+{% endblock %}
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
-</head>
+{% block page_title %}
+Dashboard
+{% endblock %}
 
-<body>
+{% block page_subtitle %}
+Welcome to your Student Management System
+{% endblock %}
 
-    <h1>Student Management System</h1>
+{% block content %}
 
-    <p>Welcome to our Student Management System!</p>
+<!-- Statistics Cards -->
 
-    <br>
+<div class="stats-grid">
 
-    <a href="/add-student">
-        <button>Add Student</button>
+    <div class="stat-card">
+
+        <div class="stat-icon blue">
+            👨‍🎓
+        </div>
+
+        <div>
+            <p>Total Students</p>
+            <h2>{{ total_students }}</h2>
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon green">
+            📚
+        </div>
+
+        <div>
+            <p>Total Courses</p>
+            <h2>{{ total_courses }}</h2>
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon orange">
+            🎓
+        </div>
+
+        <div>
+            <p>Active Students</p>
+            <h2>{{ total_students }}</h2>
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon purple">
+            📅
+        </div>
+
+        <div>
+            <p>Academic Years</p>
+            <h2>{{ total_years }}</h2>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Quick Actions -->
+
+<div class="section-header">
+
+    <div>
+        <h2>Quick Actions</h2>
+        <p>Manage your students easily</p>
+    </div>
+
+</div>
+
+
+<div class="quick-actions">
+
+    <a href="/add-student" class="action-card">
+
+        <div class="action-icon">
+            ➕
+        </div>
+
+        <div>
+            <h3>Add Student</h3>
+            <p>Register a new student</p>
+        </div>
+
     </a>
 
-    <a href="/students">
-        <button>View Students</button>
+
+    <a href="/students" class="action-card">
+
+        <div class="action-icon">
+            👨‍🎓
+        </div>
+
+        <div>
+            <h3>View Students</h3>
+            <p>View and manage students</p>
+        </div>
+
     </a>
 
-</body>
+</div>
 
-</html>
+
+<!-- Welcome Card -->
+
+<div class="welcome-card">
+
+    <div>
+
+        <h2>Student Management System</h2>
+
+        <p>
+            Manage student information, courses and academic
+            records from one place.
+        </p>
+
+    </div>
+
+    <div class="welcome-icon">
+        🎓
+    </div>
+
+</div>
+
+{% endblock %}
 ```

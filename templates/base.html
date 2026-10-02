@@ -1,0 +1,107 @@
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Student Management System{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-icon">🎓</div>
+
+                <div>
+                    <h2>Student MS</h2>
+                    <span>Management System</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+
+                <a href="/" class="nav-item">
+                    <span>🏠</span>
+                    Dashboard
+                </a>
+
+                <a href="/students" class="nav-item">
+                    <span>👨‍🎓</span>
+                    Students
+                </a>
+
+                <a href="/add-student" class="nav-item">
+                    <span>➕</span>
+                    Add Student
+                </a>
+
+            </nav>
+
+            <div class="sidebar-footer">
+
+                <div class="footer-icon">⚙️</div>
+
+                <div>
+                    <strong>Admin Panel</strong>
+                    <small>Student Management</small>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>{% block page_title %}Dashboard{% endblock %}</h1>
+
+                    <p>
+                        {% block page_subtitle %}
+                        Manage your students efficiently
+                        {% endblock %}
+                    </p>
+                </div>
+
+                <a href="/add-student" class="topbar-button">
+                    + Add Student
+                </a>
+
+            </header>
+
+
+            <section class="page-content">
+
+                {% block content %}
+
+                {% endblock %}
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
+```

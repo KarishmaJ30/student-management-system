@@ -111,3 +111,34 @@ def delete_student(student_id):
 
 
 create_database()
+
+def get_dashboard_stats():
+
+    connection = sqlite3.connect("students.db")
+
+    cursor = connection.cursor()
+
+    # Total students
+    cursor.execute("SELECT COUNT(*) FROM students")
+    total_students = cursor.fetchone()[0]
+
+    # Total courses
+    cursor.execute("""
+        SELECT COUNT(DISTINCT course)
+        FROM students
+        WHERE course IS NOT NULL
+        AND course != ''
+    """)
+    total_courses = cursor.fetchone()[0]
+
+    # Academic years
+    cursor.execute("""
+        SELECT COUNT(DISTINCT year)
+        FROM students
+        WHERE year IS NOT NULL
+    """)
+    total_years = cursor.fetchone()[0]
+
+    connection.close()
+
+    return total_students, total_courses, total_years

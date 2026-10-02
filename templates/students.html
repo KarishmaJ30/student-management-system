@@ -1,58 +1,196 @@
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html>
+{% block title %}
+Students - Student Management System
+{% endblock %}
 
-<head>
-    <title>Students</title>
+{% block page_title %}
+Students
+{% endblock %}
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
-</head>
+{% block page_subtitle %}
+View and manage all registered students
+{% endblock %}
 
-<body>
+{% block content %}
 
-    <h1>All Students</h1>
+<!-- Page Header -->
 
-    <table border="1">
+<div class="students-header">
 
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Course</th>
-            <th>Year</th>
-            <th>Address</th>
-            <th>Action</th>
-        </tr>
+    <div>
+        <h2>All Students</h2>
+        <p>Manage student information and academic details</p>
+    </div>
 
-        {% for student in students %}
+    <a href="/add-student" class="add-student-button">
+        + Add Student
+    </a>
 
-        <tr>
-            <td>{{ student[0] }}</td>
-            <td>{{ student[1] }}</td>
-            <td>{{ student[2] }}</td>
-            <td>{{ student[3] }}</td>
-            <td>{{ student[4] }}</td>
-            <td>{{ student[5] }}</td>
-            <td>{{ student[6] }}</td>
+</div>
 
-            <td>
-                <a href="/edit-student/{{ student[0] }}">
-                    <button>Edit</button>
-                </a>
 
-                 <a href="/delete-student/{{ student[0] }}">
-                    <button>Delete</button>
-                </a>
-            </td>
+<!-- Students Table -->
 
-        </tr>
+<div class="students-card">
 
-        {% endfor %}
+    {% if students %}
 
-    </table>
+    <div class="table-container">
 
-</body>
+        <table class="students-table">
 
-</html>
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Student</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Course</th>
+                    <th>Year</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for student in students %}
+
+                <tr>
+
+                    <!-- ID -->
+
+                    <td>
+                        <span class="student-id">
+                            #{{ student[0] }}
+                        </span>
+                    </td>
+
+
+                    <!-- Student -->
+
+                    <td>
+
+                        <div class="student-info">
+
+                            <div class="student-avatar">
+                                {{ student[1][0]|upper }}
+                            </div>
+
+                            <div>
+                                <strong>{{ student[1] }}</strong>
+                                <small>Student</small>
+                            </div>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- Email -->
+
+                    <td>
+                        {{ student[2] }}
+                    </td>
+
+
+                    <!-- Phone -->
+
+                    <td>
+                        {{ student[3] }}
+                    </td>
+
+
+                    <!-- Course -->
+
+                    <td>
+
+                        <span class="course-badge">
+                            {{ student[4] }}
+                        </span>
+
+                    </td>
+
+
+                    <!-- Year -->
+
+                    <td>
+                        <span class="year-badge">
+                            Year {{ student[5] }}
+                        </span>
+                    </td>
+
+
+                    <!-- Address -->
+
+                    <td>
+                        {{ student[6] }}
+                    </td>
+
+
+                    <!-- Actions -->
+
+                    <td>
+
+                        <div class="table-actions">
+
+                            <a
+                                href="/edit-student/{{ student[0] }}"
+                                class="edit-button"
+                            >
+                                Edit
+                            </a>
+
+                            <a
+                                href="/delete-student/{{ student[0] }}"
+                                class="delete-button"
+                            >
+                                Delete
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+    <!-- Empty State -->
+
+    <div class="empty-state">
+
+        <div class="empty-icon">
+            👨‍🎓
+        </div>
+
+        <h3>No Students Found</h3>
+
+        <p>
+            There are no students registered yet.
+            Start by adding your first student.
+        </p>
+
+        <a href="/add-student" class="add-student-button">
+            + Add First Student
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

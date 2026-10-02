@@ -1,12 +1,27 @@
 from flask import Flask, render_template, request
-from database import add_student, get_students, get_student, update_student, delete_student
+from database import (
+    add_student,
+    get_students,
+    get_student,
+    update_student,
+    delete_student,
+    get_dashboard_stats
+)
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+
+    total_students, total_courses, total_years = get_dashboard_stats()
+
+    return render_template(
+        "index.html",
+        total_students=total_students,
+        total_courses=total_courses,
+        total_years=total_years
+    )
 
 
 @app.route("/add-student", methods=["GET", "POST"])
