@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect , url_for, flash
 from database import (
     add_student,
     get_students,
@@ -9,6 +9,7 @@ from database import (
 )
 
 app = Flask(__name__)
+app.secret_key = "student-management-secret-key"
 
 
 @app.route("/")
@@ -45,7 +46,10 @@ def add_student_page():
             address
         )
 
-        return "Student added successfully!"
+       
+        flash("Student added successfully!", "success")
+
+        return redirect(url_for("students"))
 
     return render_template("add_student.html")
 
@@ -87,7 +91,9 @@ def edit_student(student_id):
             address
         )
 
-        return "Student updated successfully!"
+        flash("Student updated successfully!", "success")
+
+        return redirect(url_for("students"))
 
     return render_template(
         "edit_student.html",
@@ -100,7 +106,9 @@ def delete_student_page(student_id):
 
     delete_student(student_id)
 
-    return "Student deleted successfully!"
+    flash("Student deleted successfully!", "success")
+
+    return redirect(url_for("students"))
 
 
 

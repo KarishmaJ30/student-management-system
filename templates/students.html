@@ -146,8 +146,9 @@ View and manage all registered students
                             </a>
 
                             <a
-                                href="/delete-student/{{ student[0] }}"
-                                class="delete-button"
+                                    href="/delete-student/{{ student[0] }}"
+                                    class="delete-button"
+                                    onclick="return confirm('Are you sure you want to delete this student?');"
                             >
                                 Delete
                             </a>
